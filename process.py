@@ -27,8 +27,8 @@ class ProcessInterface():
 
     def run(self, model_result, frame_free, start_flag=True):
         model_result = self.distribute_results(model_result)
+        self.process_frame_count.add()
         if frame_free > 0:
-            self.process_frame_count.add()
             start_flag = self.process_frame_count.vibrate(frame_free)
         for func in self.type:
             if start_flag:
