@@ -22,11 +22,9 @@ class ProcessInterface():
         self.process_frame_count = FrameCount('process_frame_count')
         self.process_main_count = FrameCount('process_main_count')
 
-    def __call__(self, model_result, frame_free=-1):
+    def __call__(self, model_result, frame_free=-1, type='all'):
         self.run(model_result, frame_free=frame_free)
-        results = self.solver.get_all_result()
-        self.update(results)
-        return self.get()
+        return self.get(type)
 
     def run(self, model_result, frame_free, start_flag=True):
         model_result = self.distribute_results(model_result)
@@ -54,7 +52,7 @@ class ProcessInterface():
             new_model_result[_k] = []
         for anno_each_person in model_result:
             new_model_result['clothing'].append(
-                [[anno_each_person['tracking_id'], anno_each_person['name']], [None, None, None]])
+                [[anno_each_person['tracking_id'], anno_each_person['name']], [0, 1, 1]])
             new_model_result['turn_round'].append(
                 [[anno_each_person['tracking_id'], anno_each_person['name']], anno_each_person['Eulerangle']])
             new_model_result['group_person'].append(
@@ -67,12 +65,14 @@ class ProcessInterface():
         for k, v in states.items():
             getattr(self, k + '_state').update(v)
 
-    def get(self):
-        ret = {}
-        for func in self.type:
-            func_state = getattr(self, func + '_state')
-            ret[func_state.name] = func_state.state
-        return ret
+    def get(self, type):
+        if type == 'all':
+            return self.solver.get_all_result()
+        else:
+            if type in self.type:
+                return self.solver.get_result(type)
+            else:
+                raise Exception('Wrong type!')
 
     def start_frame_count(self):
         for func in self.type:

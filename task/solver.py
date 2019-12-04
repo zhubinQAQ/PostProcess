@@ -32,7 +32,6 @@ class Solver():
         '''
         func = self._set(func_type=func_type)
         func_result = func(model_results[func_type], **kwargs)
-        print(func_result)
         assert isinstance(func_result, list), 'unknown return type!'
         self.result[func_type] = func_result
 

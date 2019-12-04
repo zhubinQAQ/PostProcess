@@ -25,7 +25,6 @@ class MultiEntry():
 
     def __call__(self, model_results):
         ret = []
-        print(model_results)
         for per_person_result in model_results:
             person = per_person_result
             id, name = person

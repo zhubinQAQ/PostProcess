@@ -1,13 +1,14 @@
 import json
 from process import ProcessInterface
 import params as P
+import numpy as np
 
 func_type = ['clothing', 'turn_round', 'group_person', 'multi_entry']
 param_keys = {'clothing': [],
               'turn_round': ['turnround_times', 'turnround_sense'],
               'group_person': ['groupperson_max'],
               'multi_entry': ['multientry_frequency']}
-
+clothes = {0:'hat', 1:'sunglasses', 2:'mask'}
 
 def set_atm_default_params():
     params = {}
@@ -20,10 +21,21 @@ def set_atm_default_params():
 
 f = open('test.json')
 model_results = json.load(f)
-print(model_results)
 params = set_atm_default_params()
 atm_interface = ProcessInterface(params, func_type)
 
 for i in range(100):
     atm_result = atm_interface(model_results)
-    print(atm_result)
+    s = ''
+    for k,v in atm_result.items():
+        for _v in v:
+            if len(_v) == 2:
+                if np.array(_v[1]).any():
+                    inds = list(np.where(np.array(_v[1])!=0)[0])
+                    s += _v[0][1] + ' : ' + k + ' (' +','.join([clothes[ind] for ind in inds])+')\n'
+            elif len(_v) == 3:
+                if _v[2]:
+                    s += _v[1] + ' : ' + k + '\n'
+            else:
+                raise Exception('Error in print')
+    print('[Frame {}]==>\n'.format(i), s)
