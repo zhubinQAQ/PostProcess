@@ -20,7 +20,6 @@ class ProcessInterface():
         self.start_frame_count()
         self.start_state_manage()
         self.process_frame_count = FrameCount('process_frame_count')
-        self.process_main_count = FrameCount('process_main_count')
 
     def __call__(self, model_result, frame_free=-1, type='all'):
         self.run(model_result, frame_free=frame_free)
@@ -28,10 +27,10 @@ class ProcessInterface():
 
     def run(self, model_result, frame_free, start_flag=True):
         model_result = self.distribute_results(model_result)
+        if frame_free > 0:
+            self.process_frame_count.add()
+            start_flag = self.process_frame_count.vibrate(frame_free)
         for func in self.type:
-            if frame_free > 0:
-                self.process_frame_count.add()
-                start_flag = self.process_frame_count.vibrate(frame_free)
             if start_flag:
                 getattr(self, func + '_frame').add()
                 self.solver.run(func, model_result)
@@ -81,6 +80,9 @@ class ProcessInterface():
     def reset_frame_count(self):
         for func in self.type:
             getattr(self, func + '_frame').reset()
+
+    def get_frame_count(self):
+        return self.process_frame_count.frame
 
     def start_state_manage(self):
         for func in self.type:

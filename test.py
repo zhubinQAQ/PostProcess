@@ -24,8 +24,9 @@ model_results = json.load(f)
 params = set_atm_default_params()
 atm_interface = ProcessInterface(params, func_type)
 
+
 for i in range(100):
-    atm_result = atm_interface(model_results)
+    atm_result = atm_interface(model_results, frame_free=-1)
     s = ''
     for k,v in atm_result.items():
         for _v in v:
@@ -38,4 +39,4 @@ for i in range(100):
                     s += _v[1] + ' : ' + k + '\n'
             else:
                 raise Exception('Error in print')
-    print('[Frame {}]==>\n'.format(i), s)
+    print('[Frame {}]==>\n'.format(atm_interface.get_frame_count()), s)
