@@ -2,6 +2,7 @@ import json
 from process import ProcessInterface
 import params as P
 import numpy as np
+import yaml
 
 func_type = ['clothing', 'turn_round', 'group_person', 'multi_entry']
 param_keys = {'clothing': [],
@@ -21,7 +22,9 @@ def set_atm_default_params():
 
 f = open('test.json')
 model_results = json.load(f)
-params = set_atm_default_params()
+# params = set_atm_default_params()
+params = yaml.load(open('params.yaml'))
+print(params)
 atm_interface = ProcessInterface(params, func_type)
 
 

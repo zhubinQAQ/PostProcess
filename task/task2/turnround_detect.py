@@ -33,6 +33,9 @@ class TurnRound():
         ret = []
         for per_person_result in model_results:
             person, angles = per_person_result
+            if angles == 'None':
+                continue
+            print(person, angles)
             id, name = person
             manager = self._manage_state(id, name)
             self.update_state(manager, angles)

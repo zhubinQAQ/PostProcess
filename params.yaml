@@ -1,0 +1,15 @@
+# clothing
+clothing:
+  classes: ('hat', 'sunglasses', 'mask')
+# turn round
+turn_round:
+  turnround_times: 3
+  turnround_sense: 0.5
+
+# group person
+group_person:
+  groupperson_max: 2
+
+# multi entry
+multi_entry:
+  multientry_frequency: 3

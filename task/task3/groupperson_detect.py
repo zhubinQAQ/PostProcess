@@ -25,6 +25,8 @@ class GroupPerson():
 
         for per_person_result in model_results:
             person, bbox = per_person_result
+            if person == 'None':
+                continue
             id, name = person
             ret.append([id, name, state])
             # TO DO: get the center point to calculate the distance among people
