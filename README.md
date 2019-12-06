@@ -8,4 +8,6 @@
 * Detect the amount of persons
 * Detect the access times of an identified person
 
+![structure](https://github.com/zhubinQAQ/PostProcess/utils/sample.png)
+
 
