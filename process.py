@@ -15,8 +15,6 @@ class ProcessInterface():
 
     def __init__(self, type):
         '''
-
-        :param params: dict, key: function type
         :param type: ['clothing', 'turn_round', 'group_person', 'multi_entry']
         '''
         self.type = type
