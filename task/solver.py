@@ -16,6 +16,9 @@ class Solver():
 
         self.result = defaultdict()
 
+    def change_params(self, params):
+        self.params = params
+
     def _set(self, func_type=None):
         if func_type is not None:
             assert isinstance(func_type, str)

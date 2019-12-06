@@ -45,7 +45,6 @@ class ManageState(BaseManageState):
         if len(self.times[k]) < 25 * self.noise_time:
             return False
         else:
-            print(len(self.times[k]))
             assert len(self.times[k]) == 25 * self.noise_time
             num = np.array(self.times[k])
             if len(np.where(num == 1)[0]) > 0:

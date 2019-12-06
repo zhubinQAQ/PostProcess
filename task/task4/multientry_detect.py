@@ -29,7 +29,7 @@ class MultiEntry():
         for per_person_result in model_results:
             person = per_person_result
             id, name = person
-            if name == 'None' and 'Person':
+            if name == 'None' or name == 'Person':
                 continue
             names.append(name)
             if name not in self.names:
@@ -47,7 +47,7 @@ class MultiEntry():
             name = manager.name
 
             if self.get_state(manager):
-                ret.append([id, name, 1])
+                ret.append([id, name, manager.get_times('multi_entry')])
             else:
                 ret.append([id, name, 0])
 

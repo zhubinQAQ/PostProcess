@@ -22,7 +22,7 @@ class TurnRound():
     def update_state(self, manager, angles):
         state_dict = {'turn_round': 0}
         x_angle, y_angle, z_angle = angles
-        if y_angle > 20:
+        if abs(x_angle) > 50:
             state_dict['turn_round'] = 1
         manager.update(state_dict)
 
@@ -33,10 +33,9 @@ class TurnRound():
         ret = []
         for per_person_result in model_results:
             person, angles = per_person_result
-            if angles == 'None':
-                continue
-            print(person, angles)
             id, name = person
+            if angles == 'None' or name == 'Person':
+                continue
             manager = self._manage_state(id, name)
             self.update_state(manager, angles)
             if self.get_state(manager):
