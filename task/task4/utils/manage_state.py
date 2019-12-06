@@ -1,8 +1,10 @@
 import numpy as np
+from PostProcess.tools.manage_state import BaseManageState
 
 
-class ManageState():
+class ManageState(BaseManageState):
     def __init__(self, id, name):
+        super().__init__(name)
         self.id = id
         self.name = name
         self.threshold = 3

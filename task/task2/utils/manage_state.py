@@ -1,5 +1,9 @@
-class ManageState():
+from PostProcess.tools.manage_state import BaseManageState
+
+
+class ManageState(BaseManageState):
     def __init__(self, id, name):
+        super().__init__(name)
         self.id = id
         self.name = name
         self.last = 25

@@ -1,5 +1,5 @@
 from task import Solver
-from tools import FrameCount, ManageState
+from tools import FrameCount
 
 
 class ProcessInterface():
@@ -18,7 +18,6 @@ class ProcessInterface():
         self.solver = Solver(params)
 
         self.start_frame_count()
-        self.start_state_manage()
         self.process_frame_count = FrameCount('process_frame_count')
 
     def __call__(self, model_result, frame_free=-1, type='all'):
@@ -83,11 +82,3 @@ class ProcessInterface():
 
     def get_frame_count(self):
         return self.process_frame_count.frame
-
-    def start_state_manage(self):
-        for func in self.type:
-            setattr(self, func + '_state', ManageState(func))
-
-    def reset_state_manage(self):
-        for func in self.type:
-            getattr(self, func + '_state').reset()

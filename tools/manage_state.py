@@ -1,30 +1,25 @@
-class ManageState():
-    def __init__(self, name):
+class BaseManageState():
+    def __init__(self, name, **args):
         self.name = name
-        self.state = {}
 
-    def update(self, state):
-        for k, v in state.items():
-            if not self.state:
-                self.state[k] = 0
-            else:
-                if v:
-                    self.state[k] += 1
+    def update(self, args):
+        """
+        Manager gets the state and records
+        """
+        pass
 
     def reset(self):
-        new = {}
-        assert self.state
-        for k, v in self.state.items():
-            new[k] = 0
-        self.state = new
+        """
+        Reset manager state
+        """
+        pass
 
-    def get_times(self, key):
-        return self.state[key]
+    def get_times(self, args):
+        """
+        Get the state
+        """
 
-    def __repr__(self):
-        s = self.__class__.__name__ + "("
-        s += "name={}, ".format(self.name)
-        for k, v in self.state:
-            s += "{}={} ;".format(k, v)
-        s += ')'
-        return s
+    def signal(self, args):
+        """
+        Return whether the state is beyond the boundary
+        """
