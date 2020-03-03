@@ -14,3 +14,6 @@
 > P = ProcessInterface(cfg_file='PostProcess/cfgs/params.yaml')
 >> for i in range(frame_num):
         result = P(i)
+
+## Architecture of input data 
+> list[dict{result1:xx, result2:xx, ...}, dict{},...]
