@@ -10,3 +10,7 @@
 
 ![structure](https://github.com/zhubinQAQ/PostProcess/blob/master/utils/sample.png)
 
+## How to use
+> P = ProcessInterface(cfg_file='PostProcess/cfgs/params.yaml')
+> for i in range(frame_num):
+        result = P(i)

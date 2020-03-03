@@ -1,17 +1,17 @@
 import numpy as np
+import json
 from .utils.manage_state import ManageState
+from PostProcess.core.priv_config import cfg_priv
+from PostProcess.task.task import Task
 
 
-class TurnRound():
+class TRound(Task):
     def __init__(self):
-        self.turnround_times = 3
-        self.turnround_sense = 0.5
+        self.times = cfg_priv.TROUND.TIMES
+        self.sense = cfg_priv.TROUND.SENSE
+        self.data_path = cfg_priv.TROUND.DATA_PATH
 
-    def set(self, params):
-        assert isinstance(params, dict)
-        if len(params):
-            for k, v in params.items():
-                setattr(self, k, v)
+        self.state = {}
 
     def _manage_state(self, id, name):
         manager_name = 'state_manager_{}'.format(name)
@@ -28,18 +28,3 @@ class TurnRound():
 
     def get_state(self, manager):
         return manager.signal('turn_round')
-
-    def __call__(self, model_results):
-        ret = []
-        for per_person_result in model_results:
-            person, angles = per_person_result
-            id, name = person
-            if angles == 'None' or name == 'Person':
-                continue
-            manager = self._manage_state(id, name)
-            self.update_state(manager, angles)
-            if self.get_state(manager):
-                ret.append([id, name, 1])
-            else:
-                ret.append([id, name, 0])
-        return ret

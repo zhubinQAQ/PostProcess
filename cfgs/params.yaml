@@ -1,15 +1,19 @@
-# clothing
-clothing:
-  classes: ('hat', 'sunglasses', 'mask')
-# turn round
-turn_round:
-  turnround_times: 3
-  turnround_sense: 0.5
+# hop detect
+HOP:
+  CLASSES: ('hat', 'sunglasses', 'mask')
+  DATA_PATH: ('PostProcess/data/atm_mini2-atm_hop/result.json',)
+# turn round detect
+TROUND:
+  TIMES: 3
+  SENSE: 0.5
+  DATA_PATH: ('PostProcess/data/atm_mini2-atm_3dkpts/result.json',)
 
-# group person
-group_person:
-  groupperson_max: 2
+# group person detect
+GROUP:
+  MAX_NUM: 2
+  DATA_PATH: ('PostProcess/data/atm_mini2-atm_face/result.json',)
 
-# multi entry
-multi_entry:
-  multientry_frequency: 3
+# multi entry detect
+ENTRY:
+  FREQUENCY: 3
+  DATA_PATH: ('PostProcess/data/atm_mini2-atm_face/result.json', 'PostProcess/data/atm_mini2-atm_reco/result.json')
