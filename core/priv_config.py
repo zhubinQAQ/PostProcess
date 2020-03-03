@@ -32,6 +32,7 @@ __C = AttrDict()
 cfg_priv = __C
 
 # __C.PET_ROOT = '/home/zhubin/ATM-stuff/Pet-dev'
+__C.TASK = ('hop', 'turn_round', 'group', 'entry')
 
 __C.HOP = AttrDict()
 __C.HOP.CLASSES = ('hat', 'sunglasses', 'mask')
@@ -39,7 +40,8 @@ __C.HOP.DATA_PATH = ()
 
 __C.TROUND = AttrDict()
 __C.TROUND.TIMES = 3
-__C.TROUND.SENSE = 0.5
+__C.TROUND.TROUND_SENSE = 0.5
+__C.TROUND.FRONT_SENSE = (0.8, 1.2)
 __C.TROUND.DATA_PATH = ()
 
 __C.GROUP = AttrDict()

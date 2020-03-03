@@ -1,3 +1,6 @@
+#TASK: ('hop', 'turn_round', 'group', 'entry')
+TASK: ('hop', 'turn_round', 'entry')
+
 # hop detect
 HOP:
   CLASSES: ('hat', 'sunglasses', 'mask')
@@ -5,7 +8,8 @@ HOP:
 # turn round detect
 TROUND:
   TIMES: 3
-  SENSE: 0.5
+  TROUND_SENSE: 0.5
+  FRONT_SENSE: (0.8, 1.2)
   DATA_PATH: ('PostProcess/data/atm_mini2-atm_3dkpts/result.json',)
 
 # group person detect

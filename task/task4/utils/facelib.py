@@ -21,7 +21,6 @@ class FaceLib():
     def __call__(self, face_feature):
         self.init()
         similarity, match_person = self.match(face_feature)
-        print(similarity, match_person)
         if similarity > self.threshold[1]:
             return match_person
         elif similarity < self.threshold[0]:
@@ -43,7 +42,7 @@ class FaceLib():
     def match(self, face_feature):
         similarity = 0
         match_person = ''
-        for name, save_feature in self.faces:
+        for name, save_feature in self.faces.items():
             s = compute_dist(face_feature, save_feature)
             if s > similarity:
                 similarity = s
@@ -52,7 +51,7 @@ class FaceLib():
 
     def update(self, face_feature):
         new_person = 'person{}'.format(len(self.faces))
-        np.save(os.path.join(self.path, new_person + '.npy'), face_feature)
+        # np.save(os.path.join(self.path, new_person + '.npy'), face_feature)
         return new_person
 
     def remove(self):

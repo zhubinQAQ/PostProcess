@@ -11,10 +11,10 @@ class ProcessInterface():
     type: face_kpts, face_det, face_rec, ho_det (human occlusion)
     '''
 
-    def __init__(self, type=None, cfg_file=None):
-        self.type = ['hop', 'turn_round', 'group', 'entry'] if type is None else type
+    def __init__(self, cfg_file=None):
         if cfg_file is not None:
             merge_priv_cfg_from_file(cfg_file)
+        self.type = cfg_priv.TASK
         self.solver = Solver()
 
         self.start_frame_count()
