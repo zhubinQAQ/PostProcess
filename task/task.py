@@ -8,11 +8,13 @@ class Task():
 
     def prepare_data(self, idx):
         data = {}
-        for path in self.data_path:
-            if not hasattr(self, 'all_data_list'):
+        if not hasattr(self, 'all_data_list'):
+            self.all_data_list = []
+            for path in self.data_path:
                 with open(path) as f:
-                    self.all_data_list = json.load(f)
-            pick_data = self.all_data_list[idx]
+                    self.all_data_list.append(json.load(f))
+        for data_list in self.all_data_list:
+            pick_data = data_list[idx]
             data.update(pick_data)
         return data
 

@@ -8,3 +8,9 @@ def group_point(points):
     y = points[1]
     # TODO: group points
     return 0
+
+
+def box_angles(pos_box):
+    is_turnround = False
+    is_front = False
+    return is_turnround, is_front

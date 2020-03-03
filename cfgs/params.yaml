@@ -16,4 +16,4 @@ GROUP:
 # multi entry detect
 ENTRY:
   FREQUENCY: 3
-  DATA_PATH: ('PostProcess/data/atm_mini2-atm_face/result.json', 'PostProcess/data/atm_mini2-atm_reco/result.json')
+  DATA_PATH: ('PostProcess/data/atm_mini2-atm_3dkpts/result.json', 'PostProcess/data/atm_mini2-atm_reco/result.json')

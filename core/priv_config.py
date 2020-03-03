@@ -51,6 +51,11 @@ __C.ENTRY = AttrDict()
 __C.ENTRY.FREQUENCY = 3
 __C.ENTRY.DATA_PATH = ()
 
+__C.FACE_RECO = AttrDict()
+# > 0.7 means same person, < 0.4 means a new person
+__C.FACE_RECO.SIMILARITY_THRESHOLD = (0.2, 0.7)
+__C.FACE_RECO.FEATURE_PATH = '/home/zhubin/ATM-stuff/PostProcess/task/task4/utils/face_lib/'
+
 
 # ---------------------------------------------------------------------------- #
 # Deprecated options
