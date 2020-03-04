@@ -1,5 +1,5 @@
 #TASK: ('hop', 'turn_round', 'group', 'entry')
-TASK: ('hop', 'turn_round', 'entry', 'group')
+TASK_ON: ('hop', 'turn_round', 'entry', 'group')
 
 # hop detect
 HOP:
@@ -11,13 +11,23 @@ TROUND:
   TROUND_SENSE: 0.5
   FRONT_SENSE: (0.8, 1.2)
   DATA_PATH: ('PostProcess/data/atm_mini2-atm_3dkpts/result.json',)
+  MANAGER:
+    FRAME_LAST: 1500
+    NOISE_FRAME: 9
+    PASS_FRAME: 20
 
 # group person detect
 GROUP:
-  MAX_NUM: 2
+  MAX_NUM: 3
+  SENSE: 0.5
   DATA_PATH: ('PostProcess/data/atm_mini2-atm_face/result.json',)
 
 # multi entry detect
 ENTRY:
   FREQUENCY: 3
   DATA_PATH: ('PostProcess/data/atm_mini2-atm_3dkpts/result.json', 'PostProcess/data/atm_mini2-atm_reco/result.json')
+
+FACE_RECO:
+  SIMILARITY_THRESHOLD: (0.4, 0.8)
+  FEATURE_PATH: '/home/zhubin/ATM-stuff/PostProcess/task/task4/utils/face_lib/'
+

@@ -32,5 +32,5 @@ class Entry(Task):
             if is_front:
                 name = self.facelib(depositor_face_feature)
                 self.state['entry_name'] = name
-                entry_flag = True
+                entry_flag = name != 'None'
         self.state['entry_flag'] = entry_flag

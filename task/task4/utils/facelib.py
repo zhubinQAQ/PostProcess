@@ -50,7 +50,8 @@ class FaceLib():
         return similarity, match_person
 
     def update(self, face_feature):
-        new_person = 'person{}'.format(len(self.faces))
+        new_person = 'person{}'.format(len(self.faces)+1)
+        print('====', new_person)
         # np.save(os.path.join(self.path, new_person + '.npy'), face_feature)
         return new_person
 

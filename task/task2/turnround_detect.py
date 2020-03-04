@@ -13,7 +13,15 @@ class TRound(Task):
         self.front_sense = cfg_priv.TROUND.FRONT_SENSE
         self.data_path = cfg_priv.TROUND.DATA_PATH
 
-        self.state = {'turnround_flag': False}
+        frame_last = cfg_priv.TROUND.MANAGER.FRAME_LAST
+        noise_frame = cfg_priv.TROUND.MANAGER.NOISE_FRAME
+        pass_frame = cfg_priv.TROUND.MANAGER.PASS_FRAME
+
+        self.state = {'turnround_flag': False, 'turnround_times': 0}
+        self.manager = ManageState(frame_last=frame_last,
+                                   max_times=self.times, 
+                                   noise_frame=noise_frame,
+                                   pass_frame=pass_frame)
 
     def process_data(self, data):
         is_turnround = False
@@ -23,3 +31,7 @@ class TRound(Task):
                                          turnround_sense=self.turnround_sense,
                                          front_sense=self.front_sense)
         self.state['turnround_flag'] = is_turnround
+
+    def manage_state(self):
+        self.manager.update(self.state)
+        return self.manager.signal()

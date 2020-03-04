@@ -32,27 +32,56 @@ __C = AttrDict()
 cfg_priv = __C
 
 # __C.PET_ROOT = '/home/zhubin/ATM-stuff/Pet-dev'
-__C.TASK = ('hop', 'turn_round', 'group', 'entry')
+__C.TASK_ON = ('hop', 'turn_round', 'group', 'entry')
 
+
+# -----------------------------------
+#  HOP Settings
+# -----------------------------------
 __C.HOP = AttrDict()
 __C.HOP.CLASSES = ('hat', 'sunglasses', 'mask')
 __C.HOP.DATA_PATH = ()
 
+
+# -----------------------------------
+#  Turn Round Settings
+# -----------------------------------
 __C.TROUND = AttrDict()
 __C.TROUND.TIMES = 3
 __C.TROUND.TROUND_SENSE = 0.5
 __C.TROUND.FRONT_SENSE = (0.8, 1.2)
 __C.TROUND.DATA_PATH = ()
 
+# -----------------------------------
+#  Turn Round Manager Settings
+# -----------------------------------
+__C.TROUND.MANAGER = AttrDict()
+__C.TROUND.MANAGER.FRAME_LAST = 1500
+__C.TROUND.MANAGER.NOISE_FRAME = 9
+__C.TROUND.MANAGER.PASS_FRAME = 20
+
+
+# -----------------------------------
+#  Group Settings
+# -----------------------------------
 __C.GROUP = AttrDict()
-__C.GROUP.MAX_NUM = 2
-__C.GROUP.MIN_DISTANCE = 0
+__C.GROUP.MAX_NUM = 3
+__C.GROUP.SENSE = 0.5
 __C.GROUP.DATA_PATH = ()
 
+
+# -----------------------------------
+#  Muti-Entry Settings
+# -----------------------------------
 __C.ENTRY = AttrDict()
+# 3 times / 1 min
 __C.ENTRY.FREQUENCY = 3
 __C.ENTRY.DATA_PATH = ()
 
+
+# -----------------------------------
+#  Face Recognization Settings
+# -----------------------------------
 __C.FACE_RECO = AttrDict()
 # > 0.7 means same person, < 0.4 means a new person
 __C.FACE_RECO.SIMILARITY_THRESHOLD = (0.2, 0.7)

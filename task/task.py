@@ -21,7 +21,13 @@ class Task():
     def process_data(self, data):
         pass
 
+    def manage_state(self):
+        '''
+        Operations for a time series
+        '''
+        return self.state
+
     def __call__(self, idx):
         data = self.prepare_data(idx)
         self.process_data(data)
-        return self.state
+        return self.manage_state()

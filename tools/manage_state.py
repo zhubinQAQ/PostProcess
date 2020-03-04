@@ -1,6 +1,6 @@
 class BaseManageState():
-    def __init__(self, name, **args):
-        self.name = name
+    def __init__(self, frame_last, **args):
+        self.frame_last = frame_last
 
     def update(self, args):
         """
@@ -18,8 +18,10 @@ class BaseManageState():
         """
         Get the state
         """
+        pass
 
     def signal(self, args):
         """
         Return whether the state is beyond the boundary
         """
+        pass

@@ -14,7 +14,7 @@ class ProcessInterface():
     def __init__(self, cfg_file=None):
         if cfg_file is not None:
             merge_priv_cfg_from_file(cfg_file)
-        self.type = cfg_priv.TASK
+        self.type = cfg_priv.TASK_ON
         self.solver = Solver()
 
         self.start_frame_count()
