@@ -15,5 +15,9 @@
 >> for i in range(frame_num):
         result = P(i)
 
+## Output display
+![structure](https://github.com/zhubinQAQ/PostProcess/blob/master/utils/result.png)
+
+
 ## Architecture of input data 
 > list[dict{result1:xx, result2:xx, ...}, dict{},...]
