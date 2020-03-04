@@ -1,5 +1,5 @@
 #TASK: ('hop', 'turn_round', 'group', 'entry')
-TASK: ('hop', 'turn_round', 'entry')
+TASK: ('hop', 'turn_round', 'entry', 'group')
 
 # hop detect
 HOP:

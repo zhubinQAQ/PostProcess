@@ -20,8 +20,9 @@ class Group(Task):
         all_heads = data['all_boxes']['head']
         faces = np.array(all_faces)
         heads = np.array(all_heads)
-        merge_boxes = match_box(faces, heads)
-        center = 0.5 * (np.vstack((merge_boxes[:, 0] + merge_boxes[:, 2], merge_boxes[:, 1] + merge_boxes[:, 3])))
-        group_num = group_point(center)
-        self.state['group_num'] = group_num
-        self.state['group_flag'] = group_num >= self.max
+        if len(faces) and len(heads):
+            merge_boxes = match_box(faces, heads)
+            center = 0.5 * (np.vstack((merge_boxes[:, 0] + merge_boxes[:, 2], merge_boxes[:, 1] + merge_boxes[:, 3])))
+            group_num = group_point(center)
+            self.state['group_num'] = group_num
+            self.state['group_flag'] = group_num >= self.max

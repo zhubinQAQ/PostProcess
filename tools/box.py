@@ -6,11 +6,22 @@ def match_box(faces, heads):
     return heads
 
 
-def group_point(points):
+def group_point(points, sense=0.5):
+    num = len(points[0])
+    space = np.zeros([num, 4])
     x = points[0]
     y = points[1]
-    # TODO: group points
-    return 0
+    d_x = 215*(0.5+sense)
+    d_y = 120*(0.5+sense)
+    space[:,:2] = np.vstack((x-d_x, x+d_x)).clip(min=0, max=1279).T
+    space[:,2:] = np.vstack((y-d_y, y+d_y)).clip(min=0, max=719).T
+    ori = np.vstack((x, y, x, y)).T
+    inds_num = 0
+    for i in range(num):
+        inside = np.dot((ori - space[i]).clip(min=0, max=1), np.array([1, 1, 0, 0]))
+        _inds_num = len(np.where(inside == 0)[0])
+        inds_num = _inds_num if _inds_num > inds_num else inds_num
+    return inds_num
 
 
 def get_distance(pos_box, up_idx_list, in_idx_list):
