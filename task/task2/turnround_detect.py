@@ -19,7 +19,7 @@ class TRound(Task):
 
         self.state = {'turnround_flag': False, 'turnround_times': 0}
         self.manager = ManageState(frame_last=frame_last,
-                                   max_times=self.times, 
+                                   max_times=self.times,
                                    noise_frame=noise_frame,
                                    pass_frame=pass_frame)
 

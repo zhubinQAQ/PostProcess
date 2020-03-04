@@ -26,6 +26,10 @@ GROUP:
 ENTRY:
   FREQUENCY: 3
   DATA_PATH: ('PostProcess/data/atm_mini2-atm_3dkpts/result.json', 'PostProcess/data/atm_mini2-atm_reco/result.json')
+  MANAGER:
+    FRAME_LAST: 1500
+    NOISE_FRAME: 25
+    PASS_FRAME: 25
 
 FACE_RECO:
   SIMILARITY_THRESHOLD: (0.4, 0.8)

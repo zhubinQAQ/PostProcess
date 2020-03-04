@@ -19,7 +19,15 @@ class Entry(Task):
         feature_path = cfg_priv.FACE_RECO.FEATURE_PATH
         self.facelib = FaceLib(threshold=similarity_threshold, path=feature_path)
 
-        self.state = {'entry_flag': False, 'entry_name': ''}
+        frame_last = cfg_priv.ENTRY.MANAGER.FRAME_LAST
+        noise_frame = cfg_priv.ENTRY.MANAGER.NOISE_FRAME
+        pass_frame = cfg_priv.ENTRY.MANAGER.PASS_FRAME
+
+        self.state = {'entry_flag': False, 'entry_name': '', 'entry_times': 0}
+        self.manager = ManageState(frame_last=frame_last,
+                                   max_times=self.frequency,
+                                   noise_frame=noise_frame,
+                                   pass_frame=pass_frame)
 
     def process_data(self, data):
         entry_flag = False
@@ -34,3 +42,7 @@ class Entry(Task):
                 self.state['entry_name'] = name
                 entry_flag = name != 'None'
         self.state['entry_flag'] = entry_flag
+
+    def manage_state(self):
+        self.manager.update(self.state)
+        return self.manager.signal()

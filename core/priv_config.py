@@ -78,6 +78,14 @@ __C.ENTRY = AttrDict()
 __C.ENTRY.FREQUENCY = 3
 __C.ENTRY.DATA_PATH = ()
 
+# -----------------------------------
+#  Muti-Entry Manager Settings
+# -----------------------------------
+__C.ENTRY.MANAGER = AttrDict()
+__C.ENTRY.MANAGER.FRAME_LAST = 1500
+__C.ENTRY.MANAGER.NOISE_FRAME = 9
+__C.ENTRY.MANAGER.PASS_FRAME = 20
+
 
 # -----------------------------------
 #  Face Recognization Settings
